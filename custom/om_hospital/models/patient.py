@@ -22,6 +22,7 @@ class HospitalPatient(models.Model):
                              default='draft', string="Status", tracking=True)
     responsible_id = fields.Many2one('res.partner', string="Responsible")
     appointment_count = fields.Integer(string="Number of Appointments", compute='_compute_appointment_count')
+    image = fields.Binary(steing="Patient Image")
 
     def _compute_appointment_count(self):
         appointment_count = self.env['hospital.appointment'].search_count([('patient_id', '=', self.id)])
