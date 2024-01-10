@@ -25,6 +25,7 @@ class HospitalAppointment(models.Model):
     note = fields.Text(string="Description", related='patient_id.note')
     date_appointment = fields.Date(string="Date")
     date_checkup = fields.Datetime(string="Date and Time")
+    prescription = fields.Text(string="Prescription")
 
     def action_confirm(self):
         if self.state == 'draft':
