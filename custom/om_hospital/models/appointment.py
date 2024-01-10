@@ -14,6 +14,7 @@ class HospitalAppointment(models.Model):
     state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirmed'),
                               ('done', 'Done'), ('cancel', 'Cancelled')],
                              default='draft', string="Status", tracking=True)
+    doctor_id = fields.Many2one('hospital.doctor', string="Doctor", required=True)
     gender = fields.Selection([
         ('male', 'Male'),
         ('female', 'Female'),
