@@ -6,6 +6,7 @@ class HospitalPatient(models.Model):
     _name = "hospital.patient"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "hospital patient"
+    _order = 'name asc'
 
     name = fields.Char(string="Name", required=True)
     reference = fields.Char(string="Order Reference", required=True,

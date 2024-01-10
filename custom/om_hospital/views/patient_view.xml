@@ -6,7 +6,7 @@
         <field name="name">hospital.patient.kanban</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
-            <kanban>
+            <kanban default_order="name desc">
                 <field name="id"/>
                 <field name="name"/>
                 <field name="age"/>
@@ -122,13 +122,13 @@
                 <filter string="Male" name="male" domain="[('gender', '=', 'male')]"/>
                 <filter string="Female" name="female" domain="[('gender', '=', 'female')]"/>
                 <filter string="Others" name="other" domain="[('gender', '=', 'other')]"/>
-                <separator/>
-                <group expand="1" string="Group By">
-                    <filter string="Gender" name="gender" context="{'group_by': 'gender'}"/>
-                    <filter string="Patient Name" name="patient_name" context="{'group_by': 'name'}"/>
-                    <filter string="Responsible" name="responsible_id"
-                            context="{'group_by': 'responsible_id'}"/>
-                </group>
+<!--                <separator/>-->
+<!--                <group expand="1" string="Group By">-->
+<!--                    <filter string="Gender" name="gender" context="{'group_by': 'gender'}"/>-->
+<!--                    <filter string="Patient Name" name="patient_name" context="{'group_by': 'name'}"/>-->
+<!--                    <filter string="Responsible" name="responsible_id"-->
+<!--                            context="{'group_by': 'responsible_id'}"/>-->
+<!--                </group>-->
             </search>
         </field>
     </record>
