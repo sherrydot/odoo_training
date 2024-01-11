@@ -85,3 +85,10 @@ class HospitalPatient(models.Model):
         for rec in self:
             if rec.age == 0:
                 raise ValidationError("Age cannot be set as 0")
+
+    def name_get(self):
+        result = []
+        for rec in self:
+            name = '['+rec.reference+'] ' + rec.name + " " + str(rec.age)
+            result.append((rec.id, name))
+        return result
