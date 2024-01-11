@@ -10,7 +10,7 @@ class HospitalAppointment(models.Model):
     _order = 'date_appointment, date_checkup  asc'
 
     name = fields.Char(string="Order Reference", required=True,
-                            copy=False, readonly=True, default=lambda self: _('New'))
+                       copy=False, readonly=True, default=lambda self: _('New'))
     patient_id = fields.Many2one('hospital.patient', string="Patient", required=True)
     age = fields.Integer(string="Age", required=True, related='patient_id.age', tracking=True)
     state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirmed'),
@@ -26,6 +26,9 @@ class HospitalAppointment(models.Model):
     date_appointment = fields.Date(string="Date")
     date_checkup = fields.Datetime(string="Date and Time")
     prescription = fields.Text(string="Prescription")
+    prescription_line_ids = fields.One2many('appointment.prescription.lines',
+                                            'appointment_id',
+                                            'Prescription Lines')
 
     def action_confirm(self):
         if self.state == 'draft':
@@ -51,7 +54,6 @@ class HospitalAppointment(models.Model):
     def button_done(self):
         self.state = 'done'
 
-
     @api.model
     def create(self, vals):
 
@@ -75,3 +77,12 @@ class HospitalAppointment(models.Model):
         else:
             self.gender = ''
             self.note = ''
+
+
+class AppointmentPrescriptionLines(models.Model):
+    _name = "appointment.prescription.lines"
+    _description = "Appointment Prescription Lines"
+
+    name = fields.Char(string="Medicine", required=True)
+    qty = fields.Integer(string="Quantity")
+    appointment_id = fields.Many2one('hospital.appointment', string="Appointment")
