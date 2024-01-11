@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class HospitalAppointment(models.Model):
@@ -77,6 +78,11 @@ class HospitalAppointment(models.Model):
         else:
             self.gender = ''
             self.note = ''
+
+    def unlink(self):
+        if self.state == 'done':
+            raise ValidationError("You cannot delete an appointment that has been marked as Done")
+        return super(HospitalAppointment, self).unlink()
 
 
 class AppointmentPrescriptionLines(models.Model):
