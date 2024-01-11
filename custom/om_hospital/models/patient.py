@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
+from odoo.exceptions import ValidationError
 
 
 class HospitalPatient(models.Model):
@@ -7,6 +8,14 @@ class HospitalPatient(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "hospital patient"
     _order = 'name asc'
+
+    @api.model
+    def default_get(self, fields):
+        res = super(HospitalPatient, self).default_get(fields)
+        res['gender'] = 'other'
+        res['age'] = 50
+        res['note'] = 'Test default description'
+        return res
 
     name = fields.Char(string="Name", required=True)
     reference = fields.Char(string="Order Reference", required=True,
@@ -64,10 +73,15 @@ class HospitalPatient(models.Model):
         res = super(HospitalPatient, self).create(vals)
         return res
 
-    @api.model
-    def default_get(self, fields):
-        res = super(HospitalPatient, self).default_get(fields)
-        res['gender'] = 'other'
-        res['age'] = 50
-        res['note'] = 'Test default description'
-        return res
+    @api.constrains('name')
+    def check_name(self):
+        for rec in self:
+            patients = self.env['hospital.patient'].search([('name', '=', rec.name), ('id', '!=', rec.id)])
+            if patients:
+                raise ValidationError(_("The Name %s Already Exists in Record" % rec.name))
+
+    @api.constrains('age')
+    def check_age(self):
+        for rec in self:
+            if rec.age == 0:
+                raise ValidationError("Age cannot be set as 0")
