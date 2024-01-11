@@ -22,7 +22,10 @@
         'views/patient_gender_view.xml',
         'views/appointment_view.xml',
         'views/doctor_view.xml',
-        'views/sale.xml'
+        'views/sale.xml',
+        'report/patient_card.xml',
+        'report/patient_details_template.xml',
+        'report/report.xml',
     ],
     'installable': True,
     'auto_install': False,
