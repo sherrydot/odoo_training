@@ -126,6 +126,11 @@
                 <group expand="1" string="Group By">
                     <filter string="Patient" name="patient_id" context="{'group_by': 'patient_id'}"/>
                 </group>
+                <searchpanel>
+                    <field name="state" string="Status" enable_counter="1"/>
+                    <field name="gender" string="Gender" enable_counter="1"/>
+                    <field name="doctor_id" string="Doctor" enable_counter="1"/>
+                </searchpanel>
             </search>
         </field>
     </record>
