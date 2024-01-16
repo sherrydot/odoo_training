@@ -13,12 +13,10 @@
                                     <tr>
                                         <td width="40%">
                                             <p style="text-align:center;padding-top:10px;">
-                                                <img t-if="not o.image"
-                                                     t-att-src="'/web/static/src/img/placeholder.png'" height="140"
-                                                     border="1" width="120"/>
-                                                <img t-if="o.image"
-                                                     t-att-src="'data:image/png;base64,%s' % to_text(o.image)"
+                                                <img t-if="not o.image" t-att-src="'/web/static/img/placeholder.png'"
                                                      height="140" border="1" width="120"/>
+                                                <img t-if="o.image" t-att-src="image_data_uri(o.image)"
+                                                     style="max-height:85pt;max-width:90%" alt="Patient Image"/>
                                             </p>
                                         </td>
                                         <td width="60%">

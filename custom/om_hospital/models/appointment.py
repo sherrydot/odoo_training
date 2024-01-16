@@ -22,7 +22,7 @@ class HospitalAppointment(models.Model):
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'Other'),
-    ])
+    ], tracking=True)
     note = fields.Text(string="Description", related='patient_id.note')
     date_appointment = fields.Date(string="Date")
     date_checkup = fields.Datetime(string="Date and Time")
