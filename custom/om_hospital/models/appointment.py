@@ -55,6 +55,9 @@ class HospitalAppointment(models.Model):
     def button_done(self):
         self.state = 'done'
 
+    def button_confirm(self):
+        self.state = 'confirm'
+
     @api.model
     def create(self, vals):
 
