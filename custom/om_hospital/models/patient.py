@@ -92,3 +92,8 @@ class HospitalPatient(models.Model):
             name = '['+rec.reference+'] ' + rec.name + " " + str(rec.age)
             result.append((rec.id, name))
         return result
+
+    def action_open_appointments(self):
+        action = self.env.ref('om_hospital.action_hospital_appointment').read()[0]
+        action['domain'] = [('patient_id', '=', self.id)]
+        return action

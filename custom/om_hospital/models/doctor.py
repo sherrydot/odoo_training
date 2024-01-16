@@ -17,6 +17,12 @@ class HospitalDoctor(models.Model):
     ], required=True, default='male', tracking=True)
     note = fields.Text(string="Description")
     image = fields.Binary(string="Doctor Image")
+    appointment_count = fields.Integer(string="Number of Appointments", compute='_compute_appointment_count')
+
+    def _compute_appointment_count(self):
+        for rec in self:
+            appointment_count = self.env['hospital.appointment'].search_count([('doctor_id', '=', rec.id)])
+            rec.appointment_count = appointment_count
 
     def copy(self, default=None):
         if default is None:
