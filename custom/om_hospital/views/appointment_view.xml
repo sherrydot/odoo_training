@@ -59,6 +59,7 @@
                             class="btn-danger" type="object"
                             confirm="Are you sure you want to CANCEL?"
                             states="done,draft,confirm"/>
+                    <button name="action_url" string="Open URL" class="btn-primary" type="object"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft, done, confirm"/>
                 </header>
                 <sheet>

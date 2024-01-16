@@ -87,6 +87,13 @@ class HospitalAppointment(models.Model):
             raise ValidationError("You cannot delete an appointment that has been marked as Done")
         return super(HospitalAppointment, self).unlink()
 
+    def action_url(self):
+        return {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+            'url': 'https://github.com/sherrydot/odoo_training'
+        }
+
 
 class AppointmentPrescriptionLines(models.Model):
     _name = "appointment.prescription.lines"
