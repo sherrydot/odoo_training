@@ -91,6 +91,7 @@
                         <group>
                             <field name="gender"/>
                             <field name="note"/>
+                            <field name="active" invisible="1"/>
                         </group>
                     </group>
                 </sheet>
