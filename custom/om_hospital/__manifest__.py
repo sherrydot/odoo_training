@@ -23,6 +23,7 @@
         'views/patient_gender_view.xml',
         'views/appointment_view.xml',
         'views/doctor_view.xml',
+        'views/test_view.xml',
         'views/sale.xml',
         'report/appointment_details.xml',
         'report/patient_details_template.xml',
