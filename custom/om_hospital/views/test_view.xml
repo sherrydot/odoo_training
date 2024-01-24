@@ -2,67 +2,85 @@
 <odoo>
 
 
-    <record id="view_test_form" model="ir.ui.view">
-        <field name="name">hospital.test.form</field>
-        <field name="model">hospital.test</field>
+    <!--    <record id="view_test_form" model="ir.ui.view">-->
+    <!--        <field name="name">hospital.test.form</field>-->
+    <!--        <field name="model">hospital.test</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form>-->
+    <!--                <header>-->
+    <!--                    <button string="Show Lahore" class="oe_highlight" type="object" name="toggle_lahore"/>-->
+    <!--                    <button string="Show Karachi" class="oe_highlight" type="object" name="toggle_karachi"/>-->
+    <!--                    <button string="Show Islamabad" class="oe_highlight" type="object" name="toggle_islamabad"/>-->
+    <!--                    <button string="Reset" class="oe_highlight" type="object" name="reset_all"/>-->
+    <!--                </header>-->
+    <!--                <group>-->
+    <!--&lt;!&ndash;                    <field name="lahore" string="Lahore"&ndash;&gt;-->
+    <!--&lt;!&ndash;                           attrs="{'invisible':['|',('karachi', '=', True), ('islamabad', '=', True)]}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <field name="karachi" string="Karachi"&ndash;&gt;-->
+    <!--&lt;!&ndash;                           attrs="{'invisible':['|',('lahore', '=', True), ('islamabad', '=', True)]}"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                    <field name="islamabad" string="Islamabad"&ndash;&gt;-->
+    <!--&lt;!&ndash;                           attrs="{'invisible':['|',('karachi', '=', True), ('lahore', '=', True)]}"/>&ndash;&gt;-->
+    <!--                    <field name="lahore" string="Lahore"/>-->
+    <!--                    <field name="karachi" string="Karachi"/>-->
+    <!--                    <field name="islamabad" string="Islamabad"/>-->
+    <!--                </group>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+
+    <!--    <record id="action_test" model="ir.actions.act_window">-->
+    <!--        <field name="name">Test</field>-->
+    <!--        <field name="type">ir.actions.act_window</field>-->
+    <!--        <field name="res_model">hospital.test</field>-->
+    <!--        <field name="view_mode">form</field>-->
+    <!--        <field name="context">{}</field>-->
+    <!--        <field name="help" type="html">-->
+    <!--            <p class="o_view_nocontent_smiling_face">-->
+    <!--                Training!-->
+    <!--            </p>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+
+    <!--    <menuitem id="menu_test_root"-->
+    <!--              name="Test"-->
+    <!--              parent="menu_hospital_root"-->
+    <!--              sequence="50"/>-->
+
+    <!--    <menuitem id="menu_doctor"-->
+    <!--              name="Training"-->
+    <!--              parent="menu_test_root"-->
+    <!--              action="action_test"-->
+    <!--              sequence="10"/>-->
+
+    <record id="view_order_form_inherited" model="ir.ui.view">
+        <field name="name">sale.order.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <form>
-                <header>
-                    <button string="Show Lahore" class="oe_highlight" type="object" name="toggle_lahore"
-                            widget="boolean_toggle"/>
-                    <button string="Show Karachi" class="oe_highlight" type="object" name="toggle_karachi"
-                            widget="boolean_toggle"/>
-                    <button string="Show Islamabad" class="oe_highlight" type="object" name="toggle_islamabad"
-                            widget="boolean_toggle"/>
-                    <button string="Reset" class="oe_highlight" type="object" name="reset_all"/>
-                </header>
-                <!--                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger"-->
-                <!--                            attrs="{'invisible': [('active', '=', True)]}"/>-->
-                <!--                    <div class="oe_button_box" name="button_box">-->
-                <!--                        <button name="%(om_hospital.action_open_appointments)d" class="oe_stat_button"-->
-                <!--                                type="action" icon="fa-calendar">-->
-                <!--                        </button>-->
-                <!--                    </div>-->
-                <group>
-                    <field name="lahore" string="Lahore"
-                           attrs="{'invisible':['|',('karachi', '=', True), ('islamabad', '=', True)]}"/>
-                    <field name="karachi" string="Karachi"
-                           attrs="{'invisible':['|',('lahore', '=', True), ('islamabad', '=', True)]}"/>
-                    <field name="islamabad" string="Islamabad"
-                           attrs="{'invisible':['|',('karachi', '=', True), ('lahore', '=', True)]}"/>
-<!--                    <field name="lahore" string="Lahore"/>-->
-<!--                    <field name="karachi" string="Karachi"/>-->
-<!--                    <field name="islamabad" string="Islamabad"/>-->
-                </group>
-            </form>
+            <field name="partner_id" position="after">
+                <field name="lahore"/>
+            </field>
         </field>
     </record>
 
-
-    <record id="action_test" model="ir.actions.act_window">
-        <field name="name">Test</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">hospital.test</field>
-        <field name="view_mode">form</field>
-        <field name="context">{}</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                Training!
-            </p>
-        </field>
-    </record>
+<!--    <record id="view_order_tree_inherited" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.inherited</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_quotation_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='payment_term_id']" position="after">-->
+<!--                <field name="lahore"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
 
 
-    <menuitem id="menu_test_root"
-              name="Test"
-              parent="menu_hospital_root"
-              sequence="50"/>
-
-    <menuitem id="menu_doctor"
-              name="Training"
-              parent="menu_test_root"
-              action="action_test"
-              sequence="10"/>
-
+<!--    <menuitem id="menu_sale_appointment"-->
+<!--              name="Appointments"-->
+<!--              parent="sale.sale_order_menu"-->
+<!--              action="action_hospital_appointment"-->
+<!--              sequence="20"/>-->
 
 </odoo>
