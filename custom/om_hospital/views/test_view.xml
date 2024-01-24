@@ -59,20 +59,21 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <header>
+                    <button string="Show Lahore" class="oe_highlight" type="object" name="toggle_lahore"/>
+                    <button string="Show Karachi" class="oe_highlight" type="object" name="toggle_karachi"/>
+                    <button string="Show Islamabad" class="oe_highlight" type="object" name="toggle_islamabad"/>
+                    <button string="Reset" class="oe_highlight" type="object" name="reset_all"/>
+                </header>
+            </xpath>
             <field name="payment_term_id" position="after">
-                <field name="lahore"/>
-                <field name="karachi"/>
-                <field name="islamabad"/>
+                <field name="lahore" attrs="{'invisible':['|',('karachi', '=', True), ('islamabad', '=', True)]}"/>
+                <field name="karachi" attrs="{'invisible':['|',('lahore', '=', True), ('islamabad', '=', True)]}"/>
+                <field name="islamabad" attrs="{'invisible':['|',('karachi', '=', True), ('lahore', '=', True)]}"/>
             </field>
         </field>
     </record>
 
-
-
-    <!--    <menuitem id="menu_sale_appointment"-->
-    <!--              name="Appointments"-->
-    <!--              parent="sale.sale_order_menu"-->
-    <!--              action="action_hospital_appointment"-->
-    <!--              sequence="20"/>-->
 
 </odoo>
