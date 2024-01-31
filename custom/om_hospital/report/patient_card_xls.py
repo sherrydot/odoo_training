@@ -15,10 +15,10 @@ class PatientCardXlsx(models.AbstractModel):
                                         'bg_color': 'gray', 'color': 'black'})
         center = workbook.add_format({'align': 'center'})
 
-        row = 5
-        col = 5
+        row = 0
+        col = 0
         total = 0
-        sheet.set_column('J:J', 15)
+        sheet.set_column('E:E', 15)
 
         sheet.write(row, col, 'Name', preset_1)
         sheet.write(row, col + 1, 'Age', preset_1)
