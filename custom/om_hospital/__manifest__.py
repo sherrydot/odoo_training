@@ -10,7 +10,8 @@
         'sale',
         'mail',
         'website_slides',
-        'hr'
+        'hr',
+        'report_xlsx'
     ],
     'data': [
         'security/ir.model.access.csv',
